@@ -1,59 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Business Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based business management system for managing sales, inventory, customers, suppliers, expenses, payments, users, and business reporting from one application.
 
-## About Laravel
+## Screenshots
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Screenshots are not included in the repository yet. Add exported images to `docs/screenshots/` and reference them here, for example:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```markdown
+![Dashboard](docs/screenshots/dashboard.png)
+![Sales](docs/screenshots/sales.png)
+![Inventory](docs/screenshots/inventory.png)
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Recommended screenshots:
 
-## Learning Laravel
+- Dashboard overview
+- Sales and payment screens
+- Inventory and stock movement screens
+- Financial reports
+- User and role management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Dashboard with business metrics and activity overview
+- User accounts with role-based access control
+- Roles for super administrators, administrators, managers, salespeople, storekeepers, and accountants
+- Product, category, supplier, and customer management
+- Sales creation, editing, cancellation, payment recording, and CSV export
+- Inventory stock-in, stock-out, adjustments, valuation, movement history, and low-stock reports
+- Expense recording with categories, receipt uploads, approval, and rejection workflows
+- Financial dashboards, profit and loss, expense reports, balance sheets, and period comparison
+- Sales, inventory, and customer analytics
+- Notifications and notification preferences
+- Internal conversations, participants, messages, and read receipts
+- Audit logging and report exports
+- Form validation, authentication, password recovery, and soft-deleted users
 
-## Laravel Sponsors
+## Technologies Used
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2+
+- Laravel 12
+- Laravel Fortify
+- SQLite by default, with MySQL support available through Laravel configuration
+- Bootstrap 5.3
+- Font Awesome 6.4
+- Vite 7
+- Tailwind CSS 4
+- PHPUnit 11
+- Composer and npm
 
-### Premium Partners
+## Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Requirements
 
-## Contributing
+- PHP 8.2 or later
+- Composer
+- Node.js and npm
+- SQLite, or MySQL if you prefer a server database
+- XAMPP is suitable for local Windows development
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Setup
 
-## Code of Conduct
+From the project directory:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```powershell
+composer install
+Copy-Item .env.example .env
+php artisan key:generate
+New-Item -ItemType File -Path database\database.sqlite -Force
+php artisan migrate --seed
+npm install
+npm run build
+php artisan storage:link
+php artisan serve
+```
 
-## Security Vulnerabilities
+Open `http://127.0.0.1:8000` in your browser.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+For development with Vite hot reload, use:
+
+```powershell
+npm run dev
+```
+
+Keep the Laravel server running in a separate terminal when using Vite development mode.
+
+## Demo Credentials
+
+The database seeders create these accounts with the password `password123`:
+
+| Role | Email |
+| --- | --- |
+| Super Admin | `superadmin@business.local` |
+| Administrator | `admin@business.local` |
+| Manager | `manager@business.local` |
+| Salesperson | `salesperson@business.local` |
+| Storekeeper | `storekeeper@business.local` |
+| Accountant | `accountant@business.local` |
+
+Change all seeded passwords before using the application outside a local demo environment.
+
+## Database Setup
+
+### SQLite
+
+SQLite is the default configuration in `.env.example`:
+
+```env
+DB_CONNECTION=sqlite
+```
+
+Create the database file and run migrations with seed data:
+
+```powershell
+New-Item -ItemType File -Path database\database.sqlite -Force
+php artisan migrate --seed
+```
+
+### MySQL
+
+Create a database in MySQL, then update `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=business_management
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Run:
+
+```powershell
+php artisan migrate --seed
+```
+
+To rebuild a development database from scratch:
+
+```powershell
+php artisan migrate:fresh --seed
+```
+
+## Project Architecture
+
+This is a conventional Laravel application:
+
+```text
+app/
+  Console/        Artisan commands
+  Exceptions/     Application exception types and handling
+  Http/           Controllers, middleware, and form requests
+  Mail/           Application email classes
+  Models/         Eloquent models and relationships
+  Policies/       Authorization policies
+  Rules/          Reusable validation rules
+  Services/       Domain and application services
+bootstrap/        Framework bootstrapping
+config/           Application configuration
+database/
+  factories/      Model factories
+  migrations/     Database schema
+  seeders/        Roles, permissions, users, and sample data
+public/            Web entry point and public assets
+resources/views/   Blade templates
+routes/web.php    Web routes and middleware boundaries
+tests/             Feature and unit tests
+```
+
+Authentication is handled by middleware, authorization is organized around roles and permissions, business data is persisted through Eloquent models, and the UI is rendered with Blade templates.
+
+## Live Demo
+
+No live demo has been deployed yet. The source repository is available at:
+
+<https://github.com/Benkiche/business-management-system>
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. See [composer.json](composer.json) for the project license declaration.
+
+## Contact
+
+- GitHub: [Benkiche](https://github.com/Benkiche)
+- Email: [benedictokichele@gmail.com](mailto:benedictokichele@gmail.com)
