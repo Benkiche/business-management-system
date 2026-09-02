@@ -77,6 +77,18 @@ php artisan serve
 
 Open `http://127.0.0.1:8000` in your browser.
 
+### Free Render deployment
+
+The repository includes a `Dockerfile` and `render.yaml` for deployment to Render's free web service. Use a hosted PostgreSQL database such as Supabase or Neon; do not use SQLite on Render because its local filesystem is not persistent.
+
+1. Push the repository to GitHub, including the deployment files but never `.env`.
+2. Create a free PostgreSQL database and copy its host, database name, username, and password.
+3. In Render, choose **New > Blueprint**, connect this repository, and apply `render.yaml`.
+4. Set `APP_URL` to the Render service URL and add the PostgreSQL values when prompted.
+5. After the first deploy, run `php artisan migrate --force` from the Render shell. Use `php artisan db:seed --force` only for a demo database.
+
+The free web service may sleep when idle. Uploaded local files are also not permanent on the free plan, so configure object storage before relying on receipt uploads in production.
+
 For development with Vite hot reload, use:
 
 ```powershell
