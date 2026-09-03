@@ -7,6 +7,9 @@ if [ -n "${PORT:-}" ] && [ "$PORT" != "80" ]; then
 fi
 
 php artisan migrate --force
+if [ "${RUN_DB_SEED:-false}" = "true" ]; then
+    php artisan db:seed --force
+fi
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache

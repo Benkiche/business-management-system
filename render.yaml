@@ -13,6 +13,8 @@ services:
         generateValue: true
       - key: APP_URL
         sync: false
+      - key: RUN_DB_SEED
+        value: "false"
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
