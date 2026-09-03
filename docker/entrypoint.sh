@@ -6,6 +6,7 @@ if [ -n "${PORT:-}" ] && [ "$PORT" != "80" ]; then
     sed -ri "s/:80>/:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 fi
 
+php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
