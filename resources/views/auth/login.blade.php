@@ -91,11 +91,7 @@
                 </div>
             </div>
 
-            <p class="text-center text-muted mt-4 small">
-                Demo Credentials:<br>
-                <strong>Email:</strong> superadmin@business.local<br>
-                <strong>Password:</strong> password123
-            </p>
+            
         </div>
     </div>
 </div>
