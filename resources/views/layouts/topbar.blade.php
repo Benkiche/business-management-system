@@ -159,13 +159,23 @@ function loadNotifications() {
 function markNotificationsAsRead() {
     notificationsViewed = true;
     @if(Schema::hasTable('notifications'))
+        const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+        if (!csrfMeta) {
+            document.getElementById('notificationBadge')?.remove();
+            return;
+        }
+
         fetch('{{ route('notifications.mark-all-read') }}', {
             method: 'POST',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'X-CSRF-TOKEN': csrfMeta.content,
                 'Accept': 'application/json',
             },
-        }).then(() => {
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('notificationBadge')?.remove();
+            }
+        }).catch(() => {
             document.getElementById('notificationBadge')?.remove();
         });
     @endif

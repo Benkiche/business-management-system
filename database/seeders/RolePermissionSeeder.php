@@ -25,6 +25,10 @@ class RolePermissionSeeder extends Seeder
             'message.send',
             'message.edit',
             'message.delete',
+            'sales.view',
+            'sales.create',
+            'sales.edit',
+            'sales.delete',
         ])->pluck('id');
         $admin->permissions()->sync($adminPermissions);
 
@@ -37,6 +41,9 @@ class RolePermissionSeeder extends Seeder
             'conversation.manage_participants',
             'message.send',
             'message.edit',
+            'sales.view',
+            'sales.create',
+            'sales.edit',
         ])->pluck('id');
         $manager->permissions()->sync($managerPermissions);
 
@@ -47,6 +54,11 @@ class RolePermissionSeeder extends Seeder
             'conversation.create',
             'message.send',
             'message.edit',
+            'sales.view',
+            'sales.create',
+            'sales.edit',
+            'payments.view',
+            'payments.create',
         ])->pluck('id');
         $salesperson->permissions()->sync($salespersonPermissions);
 

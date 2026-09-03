@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -55,6 +56,19 @@ class Handler extends ExceptionHandler
             return back()
                 ->withInput()
                 ->withErrors($e->getErrors());
+        });
+
+        $this->renderable(function (AuthorizationException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => 'You are not authorized to perform this action.',
+                ], 403);
+            }
+
+            return back()
+                ->withInput()
+                ->with('error', 'You are not authorized to perform this action.');
         });
     }
 }
