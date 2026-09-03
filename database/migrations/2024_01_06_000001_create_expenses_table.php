@@ -28,7 +28,6 @@ return new class extends Migration
             $table->timestamps();
 
             // Indexes
-            $table->unique('expense_code');
             $table->index('expense_category_id');
             $table->index('expense_date');
             $table->index('recorded_by');
