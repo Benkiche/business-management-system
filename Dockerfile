@@ -28,6 +28,7 @@ RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoload
 
 COPY . .
 COPY --from=assets /app/public/build ./public/build
+COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN composer dump-autoload --optimize \
     && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views bootstrap/cache \
