@@ -120,6 +120,13 @@
             padding: 30px;
         }
 
+        .developer-footer {
+            padding: 0 30px 24px;
+            color: #6c757d;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
         .mobile-menu-toggle,
         .sidebar-close,
         .sidebar-backdrop {
@@ -199,6 +206,10 @@
             
             .content {
                 padding: 15px;
+            }
+
+            .developer-footer {
+                padding: 0 15px 18px;
             }
 
             .topbar {
@@ -289,6 +300,10 @@
             
             @yield('content')
         </div>
+
+        <footer class="developer-footer">
+            Developed by <strong>Benkiche</strong>
+        </footer>
     </div>
 
     <div class="sidebar-backdrop" aria-hidden="true"></div>
