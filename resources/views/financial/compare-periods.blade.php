@@ -60,36 +60,36 @@
                 <tbody>
                     <tr>
                         <td>Revenue</td>
-                        <td class="text-end">${{ number_format($comparison['current_period']['revenue'], 2) }}</td>
-                        <td class="text-end">${{ number_format($comparison['previous_period']['revenue'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['current_period']['revenue'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['previous_period']['revenue'], 2) }}</td>
                         <td class="text-end {{ $comparison['changes']['revenue_change_percent'] >= 0 ? 'text-success' : 'text-danger' }}">
                             {{ $comparison['changes']['revenue_change_percent'] >= 0 ? '+' : '' }}{{ number_format($comparison['changes']['revenue_change_percent'], 1) }}%
                         </td>
                     </tr>
                     <tr>
                         <td>Cost of Goods Sold</td>
-                        <td class="text-end">${{ number_format($comparison['current_period']['cost_of_goods_sold'], 2) }}</td>
-                        <td class="text-end">${{ number_format($comparison['previous_period']['cost_of_goods_sold'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['current_period']['cost_of_goods_sold'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['previous_period']['cost_of_goods_sold'], 2) }}</td>
                         <td class="text-end text-muted">&mdash;</td>
                     </tr>
                     <tr>
                         <td>Gross Profit</td>
-                        <td class="text-end">${{ number_format($comparison['current_period']['gross_profit'], 2) }}</td>
-                        <td class="text-end">${{ number_format($comparison['previous_period']['gross_profit'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['current_period']['gross_profit'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['previous_period']['gross_profit'], 2) }}</td>
                         <td class="text-end text-muted">&mdash;</td>
                     </tr>
                     <tr>
                         <td>Operating Expenses</td>
-                        <td class="text-end">${{ number_format($comparison['current_period']['operating_expenses'], 2) }}</td>
-                        <td class="text-end">${{ number_format($comparison['previous_period']['operating_expenses'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['current_period']['operating_expenses'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($comparison['previous_period']['operating_expenses'], 2) }}</td>
                         <td class="text-end {{ $comparison['changes']['expense_change_percent'] <= 0 ? 'text-success' : 'text-danger' }}">
                             {{ $comparison['changes']['expense_change_percent'] >= 0 ? '+' : '' }}{{ number_format($comparison['changes']['expense_change_percent'], 1) }}%
                         </td>
                     </tr>
                     <tr class="border-top fw-bold">
                         <td>Net Profit / Loss</td>
-                        <td class="text-end {{ $comparison['current_period']['net_profit'] >= 0 ? 'text-success' : 'text-danger' }}">${{ number_format($comparison['current_period']['net_profit'], 2) }}</td>
-                        <td class="text-end {{ $comparison['previous_period']['net_profit'] >= 0 ? 'text-success' : 'text-danger' }}">${{ number_format($comparison['previous_period']['net_profit'], 2) }}</td>
+                        <td class="text-end {{ $comparison['current_period']['net_profit'] >= 0 ? 'text-success' : 'text-danger' }}">TZS {{ number_format($comparison['current_period']['net_profit'], 2) }}</td>
+                        <td class="text-end {{ $comparison['previous_period']['net_profit'] >= 0 ? 'text-success' : 'text-danger' }}">TZS {{ number_format($comparison['previous_period']['net_profit'], 2) }}</td>
                         <td class="text-end {{ $comparison['changes']['profit_change_percent'] >= 0 ? 'text-success' : 'text-danger' }}">
                             {{ $comparison['changes']['profit_change_percent'] >= 0 ? '+' : '' }}{{ number_format($comparison['changes']['profit_change_percent'], 1) }}%
                         </td>

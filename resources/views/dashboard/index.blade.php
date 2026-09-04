@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <small class="text-muted d-block">Today's Sales</small>
-                        <h4 class="mb-0 text-success">${{ number_format($metrics['today']['sales_total'], 2) }}</h4>
+                        <h4 class="mb-0 text-success">TZS {{ number_format($metrics['today']['sales_total'], 2) }}</h4>
                         <small class="text-muted">{{ $metrics['today']['sales_count'] }} transactions</small>
                     </div>
                     <i class="fas fa-shopping-cart fa-2x text-success opacity-50"></i>
@@ -28,7 +28,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <small class="text-muted d-block">Today's Expenses</small>
-                        <h4 class="mb-0 text-danger">${{ number_format($metrics['today']['expenses_total'], 2) }}</h4>
+                        <h4 class="mb-0 text-danger">TZS {{ number_format($metrics['today']['expenses_total'], 2) }}</h4>
                         <small class="text-muted">Cost of operations</small>
                     </div>
                     <i class="fas fa-receipt fa-2x text-danger opacity-50"></i>
@@ -44,7 +44,7 @@
                     <div>
                         <small class="text-muted d-block">Today's Profit</small>
                         <h4 class="mb-0 {{ $metrics['today']['profit'] >= 0 ? 'text-success' : 'text-danger' }}">
-                            ${{ number_format($metrics['today']['profit'], 2) }}
+                            TZS {{ number_format($metrics['today']['profit'], 2) }}
                         </h4>
                         <small class="text-muted">Net income</small>
                     </div>
@@ -60,7 +60,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <small class="text-muted d-block">This Month</small>
-                        <h4 class="mb-0 text-info">${{ number_format($metrics['this_month']['sales_total'], 2) }}</h4>
+                        <h4 class="mb-0 text-info">TZS {{ number_format($metrics['this_month']['sales_total'], 2) }}</h4>
                         <small class="text-muted">{{ $metrics['this_month']['sales_count'] }} sales</small>
                     </div>
                     <i class="fas fa-calendar fa-2x text-info opacity-50"></i>
@@ -158,7 +158,7 @@
                                         <small>{{ $product['name'] }}</small>
                                     </td>
                                     <td class="text-end">
-                                        <small>${{ number_format($product['revenue'], 2) }}</small>
+                                        <small>TZS {{ number_format($product['revenue'], 2) }}</small>
                                     </td>
                                 </tr>
                             @empty
@@ -199,7 +199,7 @@
                                         <small>{{ $customer['name'] }}</small>
                                     </td>
                                     <td class="text-end">
-                                        <small>${{ number_format($customer['total_spent'], 2) }}</small>
+                                        <small>TZS {{ number_format($customer['total_spent'], 2) }}</small>
                                     </td>
                                 </tr>
                             @empty
@@ -252,7 +252,7 @@
                 </div>
                 <hr>
                 <small class="text-muted d-block">Inventory Value</small>
-                <h5>${{ number_format($inventoryStatus['inventory_value'], 2) }}</h5>
+                <h5>TZS {{ number_format($inventoryStatus['inventory_value'], 2) }}</h5>
                 <a href="{{ route('analytics.inventory') }}" class="btn btn-sm btn-outline-primary mt-2">
                     View Details
                 </a>

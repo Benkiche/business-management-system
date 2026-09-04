@@ -73,7 +73,7 @@
                                 </td>
                                 <td>
                                     <span class="badge bg-warning">
-                                        ${{ number_format($supplier->outstanding_balance, 2) }}
+                                        TZS {{ number_format($supplier->outstanding_balance, 2) }}
                                     </span>
                                 </td>
                                 <td>

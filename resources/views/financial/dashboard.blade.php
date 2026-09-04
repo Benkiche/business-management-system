@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Today's Sales</small>
-                <h5 class="mb-0 text-success">${{ number_format($dashboard['today']['sales'], 2) }}</h5>
+                <h5 class="mb-0 text-success">TZS {{ number_format($dashboard['today']['sales'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Today's Expenses</small>
-                <h5 class="mb-0 text-danger">${{ number_format($dashboard['today']['expenses'], 2) }}</h5>
+                <h5 class="mb-0 text-danger">TZS {{ number_format($dashboard['today']['expenses'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
             <div class="card-body">
                 <small class="text-muted d-block">Today's Profit</small>
                 <h5 class="mb-0 {{ $dashboard['today']['profit'] >= 0 ? 'text-success' : 'text-danger' }}">
-                    ${{ number_format($dashboard['today']['profit'], 2) }}
+                    TZS {{ number_format($dashboard['today']['profit'], 2) }}
                 </h5>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Revenue</small>
-                <h5 class="mb-0">${{ number_format($dashboard['this_month']['sales'], 2) }}</h5>
+                <h5 class="mb-0">TZS {{ number_format($dashboard['this_month']['sales'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Cost of Goods</small>
-                <h5 class="mb-0">${{ number_format($dashboard['this_month']['cost_of_goods'], 2) }}</h5>
+                <h5 class="mb-0">TZS {{ number_format($dashboard['this_month']['cost_of_goods'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Operating Expenses</small>
-                <h5 class="mb-0">${{ number_format($dashboard['this_month']['expenses'], 2) }}</h5>
+                <h5 class="mb-0">TZS {{ number_format($dashboard['this_month']['expenses'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -82,7 +82,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Net Profit</small>
-                <h5 class="mb-0 text-success">${{ number_format($dashboard['this_month']['profit'], 2) }}</h5>
+                <h5 class="mb-0 text-success">TZS {{ number_format($dashboard['this_month']['profit'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -106,13 +106,13 @@
                     <div class="col-md-4">
                         <div class="text-center">
                             <small class="text-muted d-block">Outstanding</small>
-                            <h4 class="mb-0 text-warning">${{ number_format($dashboard['customers']['outstanding_debts'], 2) }}</h4>
+                            <h4 class="mb-0 text-warning">TZS {{ number_format($dashboard['customers']['outstanding_debts'], 2) }}</h4>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="text-center">
                             <small class="text-muted d-block">Overdue</small>
-                            <h4 class="mb-0 text-danger">${{ number_format($dashboard['customers']['overdue_debts'], 2) }}</h4>
+                            <h4 class="mb-0 text-danger">TZS {{ number_format($dashboard['customers']['overdue_debts'], 2) }}</h4>
                         </div>
                     </div>
                 </div>
@@ -129,11 +129,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <small class="text-muted d-block">Total Paid</small>
-                        <h5 class="mb-3">${{ number_format($dashboard['cash_flow']['total_paid'], 2) }}</h5>
+                        <h5 class="mb-3">TZS {{ number_format($dashboard['cash_flow']['total_paid'], 2) }}</h5>
                     </div>
                     <div class="col-md-6">
                         <small class="text-muted d-block">Total Received</small>
-                        <h5 class="mb-3">${{ number_format($dashboard['cash_flow']['total_received'], 2) }}</h5>
+                        <h5 class="mb-3">TZS {{ number_format($dashboard['cash_flow']['total_received'], 2) }}</h5>
                     </div>
                 </div>
             </div>

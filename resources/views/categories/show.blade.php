@@ -67,7 +67,7 @@
                                             </a>
                                         </td>
                                         <td>{{ $product->sku ?? '-' }}</td>
-                                        <td>${{ number_format($product->selling_price, 2) }}</td>
+                                        <td>TZS {{ number_format($product->selling_price, 2) }}</td>
                                         <td>
                                             <span class="badge {{ $product->quantity_on_hand > 0 ? 'bg-success' : 'bg-danger' }}">
                                                 {{ $product->quantity_on_hand }}

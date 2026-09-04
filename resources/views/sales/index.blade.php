@@ -51,7 +51,7 @@
                                 <td>{{ $sale->invoice_number }}</td>
                                 <td>{{ $sale->customer?->name }}</td>
                                 <td>{{ $sale->sale_date?->format('M d, Y') }}</td>
-                                <td class="text-end">${{ number_format($sale->grand_total, 2) }}</td>
+                                <td class="text-end">TZS {{ number_format($sale->grand_total, 2) }}</td>
                                 <td><span class="badge bg-secondary">{{ ucfirst($sale->status) }}</span></td>
                                 <td class="text-end"><a href="{{ route('sales.show', $sale) }}" class="btn btn-sm btn-outline-primary">View</a></td>
                             </tr>

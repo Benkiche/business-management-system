@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Super Admin',
                 'phone' => '+255789123456',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make((string) env('SUPERADMIN_PASSWORD', 'password123')),
                 'role_id' => $superAdminRole->id,
                 'status' => 'active',
             ]

@@ -69,19 +69,19 @@
             <div class="card-body">
                 <div class="mb-3">
                     <small class="text-muted d-block">Credit Limit</small>
-                    <h5 class="mb-0">${{ number_format($customer->credit_limit, 2) }}</h5>
+                    <h5 class="mb-0">TZS {{ number_format($customer->credit_limit, 2) }}</h5>
                 </div>
                 <div class="mb-3">
                     <small class="text-muted d-block">Outstanding Balance</small>
                     <h5 class="mb-0">
                         <span class="badge {{ $customer->hasExceededCreditLimit() ? 'bg-danger' : 'bg-warning' }}">
-                            ${{ number_format($customer->outstanding_balance, 2) }}
+                            TZS {{ number_format($customer->outstanding_balance, 2) }}
                         </span>
                     </h5>
                 </div>
                 <div class="bg-light p-3 rounded">
                     <small class="text-muted d-block">Available Credit</small>
-                    <h5 class="mb-0 text-success">${{ number_format($customer->available_credit, 2) }}</h5>
+                    <h5 class="mb-0 text-success">TZS {{ number_format($customer->available_credit, 2) }}</h5>
                 </div>
 
                 @if($customer->hasExceededCreditLimit())
@@ -131,7 +131,7 @@
                                             <tr>
                                                 <td><strong>{{ $sale->invoice_number }}</strong></td>
                                                 <td>{{ $sale->sale_date->format('M d, Y') }}</td>
-                                                <td>${{ number_format($sale->grand_total, 2) }}</td>
+                                                <td>TZS {{ number_format($sale->grand_total, 2) }}</td>
                                                 <td>
                                                     <span class="badge {{ 
                                                         $sale->payment_status === 'paid' ? 'bg-success' : 
@@ -175,7 +175,7 @@
                                             <tr>
                                                 <td><strong>{{ $payment->payment_reference }}</strong></td>
                                                 <td>{{ $payment->payment_date->format('M d, Y') }}</td>
-                                                <td>${{ number_format($payment->amount, 2) }}</td>
+                                                <td>TZS {{ number_format($payment->amount, 2) }}</td>
                                                 <td>
                                                     <small>{{ ucfirst($payment->payment_method) }}</small>
                                                 </td>

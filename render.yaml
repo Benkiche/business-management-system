@@ -9,8 +9,12 @@ services:
         value: production
       - key: APP_DEBUG
         value: "false"
+      - key: LOG_CHANNEL
+        value: stderr
       - key: APP_KEY
         generateValue: true
+      - key: SUPERADMIN_PASSWORD
+        sync: false
       - key: APP_URL
         sync: false
       - key: RUN_DB_SEED
@@ -31,6 +35,8 @@ services:
         sync: false
       - key: SESSION_DRIVER
         value: database
+      - key: SESSION_LIFETIME
+        value: "30"
       - key: CACHE_STORE
         value: database
       - key: QUEUE_CONNECTION

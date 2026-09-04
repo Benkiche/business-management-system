@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Total Cost Value</small>
-                <h4 class="mb-0">${{ number_format($valuation['total_cost_value'], 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($valuation['total_cost_value'], 2) }}</h4>
                 <small class="text-success">at purchase price</small>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Total Retail Value</small>
-                <h4 class="mb-0">${{ number_format($valuation['total_retail_value'], 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($valuation['total_retail_value'], 2) }}</h4>
                 <small class="text-info">at selling price</small>
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Profit Potential</small>
-                <h4 class="mb-0">${{ number_format($valuation['total_profit'], 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($valuation['total_profit'], 2) }}</h4>
                 <small class="text-success">Gross profit if sold</small>
             </div>
         </div>
@@ -69,10 +69,10 @@
                             <td><small class="text-muted">{{ $item['product_code'] }}</small></td>
                             <td><strong>{{ $item['product_name'] }}</strong></td>
                             <td class="text-end">{{ $item['quantity'] }}</td>
-                            <td class="text-end">${{ number_format($item['unit_cost'], 2) }}</td>
-                            <td class="text-end">${{ number_format($item['cost_value'], 2) }}</td>
-                            <td class="text-end">${{ number_format($item['unit_price'], 2) }}</td>
-                            <td class="text-end">${{ number_format($item['retail_value'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($item['unit_cost'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($item['cost_value'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($item['unit_price'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($item['retail_value'], 2) }}</td>
                             <td class="text-end">
                                 <span class="badge bg-success">
                                     {{ number_format($item['profit_margin'], 1) }}%
@@ -84,9 +84,9 @@
                 <tfoot class="table-light fw-bold">
                     <tr>
                         <td colspan="4" class="text-end">TOTALS:</td>
-                        <td class="text-end">${{ number_format($valuation['total_cost_value'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($valuation['total_cost_value'], 2) }}</td>
                         <td></td>
-                        <td class="text-end">${{ number_format($valuation['total_retail_value'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($valuation['total_retail_value'], 2) }}</td>
                         <td class="text-end">
                             <span class="badge bg-success">
                                 {{ $valuation['total_cost_value'] > 0 ? number_format((($valuation['total_profit'] / $valuation['total_cost_value']) * 100), 1) : 0 }}%

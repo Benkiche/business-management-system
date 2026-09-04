@@ -40,7 +40,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Total Inventory Value</small>
-                <h4 class="mb-0">${{ number_format($valuation['total_cost_value'], 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($valuation['total_cost_value'], 2) }}</h4>
                 <small class="text-success">at cost</small>
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Retail Value</small>
-                <h4 class="mb-0">${{ number_format($valuation['total_retail_value'], 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($valuation['total_retail_value'], 2) }}</h4>
                 <small class="text-info">selling prices</small>
             </div>
         </div>
@@ -60,7 +60,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Total Profit Potential</small>
-                <h4 class="mb-0">${{ number_format($valuation['total_profit'], 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($valuation['total_profit'], 2) }}</h4>
                 <small class="text-success">if sold</small>
             </div>
         </div>

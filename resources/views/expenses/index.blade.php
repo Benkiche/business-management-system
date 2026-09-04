@@ -78,7 +78,7 @@
                                 <td>{{ $expense->expense_date->format('M d, Y') }}</td>
                                 <td>{{ $expense->category->name }}</td>
                                 <td>{{ Str::limit($expense->description, 30) }}</td>
-                                <td class="text-end fw-bold">${{ number_format($expense->amount, 2) }}</td>
+                                <td class="text-end fw-bold">TZS {{ number_format($expense->amount, 2) }}</td>
                                 <td><small>{{ ucfirst($expense->payment_method) }}</small></td>
                                 <td>
                                     <span class="badge bg-{{ $expense->status_badge }}">

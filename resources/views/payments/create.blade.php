@@ -33,11 +33,11 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Invoice Total</label>
-                            <input type="text" class="form-control" value="${{ number_format($sale->grand_total, 2) }}" disabled>
+                            <input type="text" class="form-control" value="TZS {{ number_format($sale->grand_total, 2) }}" disabled>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Outstanding</label>
-                            <input type="text" class="form-control" value="${{ number_format($sale->outstanding_balance, 2) }}" disabled>
+                            <input type="text" class="form-control" value="TZS {{ number_format($sale->outstanding_balance, 2) }}" disabled>
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
                                        max="{{ $sale->outstanding_balance }}"
                                        value="{{ old('amount', $sale->outstanding_balance) }}" required>
                             </div>
-                            <small class="text-muted d-block mt-1">Max: ${{ number_format($sale->outstanding_balance, 2) }}</small>
+                            <small class="text-muted d-block mt-1">Max: TZS {{ number_format($sale->outstanding_balance, 2) }}</small>
                             @error('amount')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
@@ -110,15 +110,15 @@
             <div class="card-body">
                 <div class="mb-3">
                     <small class="text-muted d-block">Invoice Total</small>
-                    <h5>${{ number_format($sale->grand_total, 2) }}</h5>
+                    <h5>TZS {{ number_format($sale->grand_total, 2) }}</h5>
                 </div>
                 <div class="mb-3">
                     <small class="text-muted d-block">Already Paid</small>
-                    <h5>${{ number_format($sale->amount_paid, 2) }}</h5>
+                    <h5>TZS {{ number_format($sale->amount_paid, 2) }}</h5>
                 </div>
                 <div class="bg-light p-3 rounded">
                     <small class="text-muted d-block">Remaining</small>
-                    <h4>${{ number_format($sale->outstanding_balance, 2) }}</h4>
+                    <h4>TZS {{ number_format($sale->outstanding_balance, 2) }}</h4>
                 </div>
             </div>
         </div>

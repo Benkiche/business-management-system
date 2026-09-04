@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('roles', RoleController::class);
     });
 
+    Route::get('products/{product}/image', [ProductController::class, 'image'])->name('products.image');
+
     // Expenses
 Route::middleware('auth')->group(function () {
     Route::resource('expenses', ExpenseController::class);

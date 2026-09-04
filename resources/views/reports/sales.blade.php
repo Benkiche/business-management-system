@@ -28,8 +28,8 @@
 
 <div class="row g-3 mb-4">
     <div class="col-sm-6 col-xl-3"><div class="card h-100"><div class="card-body"><small class="text-muted d-block">Completed Sales</small><h3 class="mb-0">{{ number_format($report['total_sales']) }}</h3></div></div></div>
-    <div class="col-sm-6 col-xl-3"><div class="card h-100"><div class="card-body"><small class="text-muted d-block">Total Revenue</small><h3 class="mb-0">${{ number_format($report['total_revenue'], 2) }}</h3></div></div></div>
-    <div class="col-sm-6 col-xl-3"><div class="card h-100"><div class="card-body"><small class="text-muted d-block">Gross Profit</small><h3 class="mb-0 text-success">${{ number_format($report['gross_profit'], 2) }}</h3></div></div></div>
+    <div class="col-sm-6 col-xl-3"><div class="card h-100"><div class="card-body"><small class="text-muted d-block">Total Revenue</small><h3 class="mb-0">TZS {{ number_format($report['total_revenue'], 2) }}</h3></div></div></div>
+    <div class="col-sm-6 col-xl-3"><div class="card h-100"><div class="card-body"><small class="text-muted d-block">Gross Profit</small><h3 class="mb-0 text-success">TZS {{ number_format($report['gross_profit'], 2) }}</h3></div></div></div>
     <div class="col-sm-6 col-xl-3"><div class="card h-100"><div class="card-body"><small class="text-muted d-block">Profit Margin</small><h3 class="mb-0">{{ number_format($report['profit_margin'], 2) }}%</h3></div></div></div>
 </div>
 
@@ -37,10 +37,10 @@
     <div class="card-header"><h5 class="mb-0">Report Summary</h5></div>
     <div class="card-body">
         <div class="row g-3">
-            <div class="col-md-3"><small class="text-muted d-block">Cost of Goods</small><strong>${{ number_format($report['total_cost'], 2) }}</strong></div>
-            <div class="col-md-3"><small class="text-muted d-block">Average Sale</small><strong>${{ number_format($report['average_sale'], 2) }}</strong></div>
-            <div class="col-md-3"><small class="text-muted d-block">Discounts Given</small><strong>${{ number_format($report['total_discount'], 2) }}</strong></div>
-            <div class="col-md-3"><small class="text-muted d-block">Tax Collected</small><strong>${{ number_format($report['total_tax'], 2) }}</strong></div>
+            <div class="col-md-3"><small class="text-muted d-block">Cost of Goods</small><strong>TZS {{ number_format($report['total_cost'], 2) }}</strong></div>
+            <div class="col-md-3"><small class="text-muted d-block">Average Sale</small><strong>TZS {{ number_format($report['average_sale'], 2) }}</strong></div>
+            <div class="col-md-3"><small class="text-muted d-block">Discounts Given</small><strong>TZS {{ number_format($report['total_discount'], 2) }}</strong></div>
+            <div class="col-md-3"><small class="text-muted d-block">Tax Collected</small><strong>TZS {{ number_format($report['total_tax'], 2) }}</strong></div>
         </div>
     </div>
 </div>
@@ -67,7 +67,7 @@
                             <td>{{ substr($sale['sale_date'], 0, 10) }}</td>
                             <td>{{ data_get($sale, 'customer.name', 'Unknown') }}</td>
                             <td>{{ data_get($sale, 'salesperson.name', 'Unknown') }}</td>
-                            <td class="text-end">${{ number_format($sale['grand_total'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($sale['grand_total'], 2) }}</td>
                             <td class="text-end"><a href="{{ route('sales.show', $sale['id']) }}" class="btn btn-sm btn-outline-primary">View</a></td>
                         </tr>
                     @empty

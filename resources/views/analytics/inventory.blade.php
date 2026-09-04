@@ -49,7 +49,7 @@
             </div>
             <div class="card-body">
                 <div class="text-center">
-                    <h3>${{ number_format($inventoryStatus['inventory_value'], 2) }}</h3>
+                    <h3>TZS {{ number_format($inventoryStatus['inventory_value'], 2) }}</h3>
                     <small class="text-muted">Total Inventory Value</small>
                 </div>
             </div>

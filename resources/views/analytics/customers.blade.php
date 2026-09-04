@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Total Credit Limit</small>
-                <h5 class="mb-0">${{ number_format($creditAnalysis['total_credit'], 2) }}</h5>
+                <h5 class="mb-0">TZS {{ number_format($creditAnalysis['total_credit'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Used Credit</small>
-                <h5 class="mb-0 text-warning">${{ number_format($creditAnalysis['used_credit'], 2) }}</h5>
+                <h5 class="mb-0 text-warning">TZS {{ number_format($creditAnalysis['used_credit'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Available Credit</small>
-                <h5 class="mb-0 text-success">${{ number_format($creditAnalysis['available_credit'], 2) }}</h5>
+                <h5 class="mb-0 text-success">TZS {{ number_format($creditAnalysis['available_credit'], 2) }}</h5>
             </div>
         </div>
     </div>
@@ -62,8 +62,8 @@
                         <tr>
                             <td>{{ $customer['name'] }}</td>
                             <td class="text-end">{{ $customer['purchases'] }}</td>
-                            <td class="text-end">${{ number_format($customer['total_spent'], 2) }}</td>
-                            <td class="text-end">${{ number_format($customer['outstanding'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($customer['total_spent'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($customer['outstanding'], 2) }}</td>
                             <td class="text-center">
                                 @if($customer['outstanding'] == 0)
                                     <span class="badge bg-success">Settled</span>

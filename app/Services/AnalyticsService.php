@@ -34,14 +34,14 @@ class AnalyticsService
      */
     protected function getTodayMetrics(string $date): array
     {
-        $expenses = Expense::approved()->whereDate('expense_date', $date)->get();
+        $expensesTotal = Expense::approved()->whereDate('expense_date', $date)->sum('amount');
         $salesTotal = $this->salesTotalForDate($date);
 
         return [
             'sales_count' => $this->salesCountForDate($date),
             'sales_total' => $salesTotal,
-            'expenses_total' => $expenses->sum('amount'),
-            'profit' => $salesTotal - $expenses->sum('amount'),
+            'expenses_total' => $expensesTotal,
+            'profit' => $salesTotal - $expensesTotal,
         ];
     }
 
@@ -50,16 +50,18 @@ class AnalyticsService
      */
     protected function getMonthMetrics(string $from, string $to): array
     {
-        $expenses = Expense::approved()->dateRange($from, $to)->get();
-        $sales = $this->salesInRange($from, $to);
-        $salesTotal = $sales->sum('grand_total');
+        $expensesQuery = Expense::approved()->dateRange($from, $to);
+        $salesQuery = Sale::query()->where('status', 'completed')->whereBetween('sale_date', [$from, $to]);
+        $expensesTotal = $expensesQuery->sum('amount');
+        $salesCount = $salesQuery->count();
+        $salesTotal = $salesQuery->sum('grand_total');
 
         return [
-            'sales_count' => $sales->count(),
+            'sales_count' => $salesCount,
             'sales_total' => $salesTotal,
-            'expenses_total' => $expenses->sum('amount'),
-            'profit' => $salesTotal - $expenses->sum('amount'),
-            'transactions_count' => $sales->count() + $expenses->count(),
+            'expenses_total' => $expensesTotal,
+            'profit' => $salesTotal - $expensesTotal,
+            'transactions_count' => $salesCount + $expensesQuery->count(),
         ];
     }
 
@@ -68,15 +70,16 @@ class AnalyticsService
      */
     protected function getYearMetrics(string $from, string $to): array
     {
-        $expenses = Expense::approved()->dateRange($from, $to)->get();
-        $sales = $this->salesInRange($from, $to);
-        $salesTotal = $sales->sum('grand_total');
+        $expensesTotal = Expense::approved()->dateRange($from, $to)->sum('amount');
+        $salesQuery = Sale::query()->where('status', 'completed')->whereBetween('sale_date', [$from, $to]);
+        $salesCount = $salesQuery->count();
+        $salesTotal = $salesQuery->sum('grand_total');
 
         return [
-            'sales_count' => $sales->count(),
+            'sales_count' => $salesCount,
             'sales_total' => $salesTotal,
-            'expenses_total' => $expenses->sum('amount'),
-            'profit' => $salesTotal - $expenses->sum('amount'),
+            'expenses_total' => $expensesTotal,
+            'profit' => $salesTotal - $expensesTotal,
         ];
     }
 
@@ -85,9 +88,9 @@ class AnalyticsService
      */
     protected function getAllTimeMetrics(): array
     {
-        $customers = Customer::active()->get();
-        $products = Product::active()->get();
-        $sales = $this->salesInRange(null, null);
+        $customers = Customer::active();
+        $products = Product::active();
+        $sales = Sale::query()->where('status', 'completed');
 
         return [
             'total_sales' => $sales->count(),
@@ -288,18 +291,15 @@ class AnalyticsService
      */
     public function getInventoryStatus(): array
     {
-        $products = Product::active()->get();
+        $products = Product::active();
 
         return [
-            'total_products' => $products->count(),
-            'in_stock' => $products->where('quantity_on_hand', '>', 0)->count(),
-            'out_of_stock' => $products->where('quantity_on_hand', 0)->count(),
-            'low_stock' => $products->where('quantity_on_hand', '<=', DB::raw('minimum_stock_level'))
-                ->where('quantity_on_hand', '>', 0)
-                ->count(),
-            'inventory_value' => $products->sum(function ($product) {
-                return $product->quantity_on_hand * $product->purchase_price;
-            }),
+            'total_products' => (clone $products)->count(),
+            'in_stock' => (clone $products)->where('quantity_on_hand', '>', 0)->count(),
+            'out_of_stock' => (clone $products)->where('quantity_on_hand', 0)->count(),
+            'low_stock' => (clone $products)->whereColumn('quantity_on_hand', '<=', 'minimum_stock_level')
+                ->where('quantity_on_hand', '>', 0)->count(),
+            'inventory_value' => (float) (clone $products)->sum(DB::raw('quantity_on_hand * purchase_price')),
         ];
     }
 
@@ -356,15 +356,11 @@ class AnalyticsService
      */
     public function getCustomerPaymentStatus(): array
     {
-        $sales = $this->salesInRange(null, null);
-
         return [
-            'paid_sales' => $sales->where('payment_status', 'paid')->count(),
-            'partial_paid' => $sales->where('payment_status', 'partial')->count(),
-            'unpaid_sales' => $sales->where('payment_status', 'pending')->count(),
-            'total_outstanding' => $sales->sum(function ($sale) {
-                return $sale->grand_total - $sale->amount_paid;
-            }),
+            'paid_sales' => Sale::where('payment_status', 'paid')->count(),
+            'partial_paid' => Sale::where('payment_status', 'partial')->count(),
+            'unpaid_sales' => Sale::where('payment_status', 'pending')->count(),
+            'total_outstanding' => (float) Sale::sum(DB::raw('grand_total - amount_paid')),
         ];
     }
 

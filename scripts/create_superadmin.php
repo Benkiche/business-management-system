@@ -8,20 +8,28 @@ $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 $email = 'superadmin@business.local';
-if (User::where('email', $email)->exists()) {
-    echo "User already exists\n";
-    exit;
+$password = env('SUPERADMIN_PASSWORD');
+
+if (!$password) {
+    fwrite(STDERR, "SUPERADMIN_PASSWORD is required\n");
+    exit(1);
 }
 
-$user = User::create([
+$role = Role::firstOrCreate(
+    ['name' => 'super_admin'],
+    ['description' => 'Full system access. Can manage all modules and users.']
+);
+
+$user = User::updateOrCreate(['email' => $email], [
     'name' => 'Super Admin',
     'email' => $email,
-    'password' => Hash::make('password123'),
-    'role_id' => 1,
+    'password' => Hash::make($password),
+    'role_id' => $role->id,
     'status' => 'active',
 ]);
 
-echo "Created user: " . $user->email . "\n";
+echo "Superadmin credentials updated: " . $user->email . "\n";

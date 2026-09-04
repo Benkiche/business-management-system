@@ -34,7 +34,7 @@
                 </div>
                 <div class="bg-light p-3 rounded">
                     <small class="text-muted d-block">Inventory Value</small>
-                    <h6 class="mb-0">${{ number_format($summary['inventory_value'], 2) }}</h6>
+                    <h6 class="mb-0">TZS {{ number_format($summary['inventory_value'], 2) }}</h6>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                                         </td>
                                         <td class="text-end">
                                             @if($movement->unit_cost)
-                                                ${{ number_format($movement->unit_cost, 2) }}
+                                                TZS {{ number_format($movement->unit_cost, 2) }}
                                             @else
                                                 -
                                             @endif

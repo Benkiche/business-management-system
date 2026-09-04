@@ -109,8 +109,8 @@
                         <tr>
                             <td><strong>{{ $person['name'] }}</strong></td>
                             <td class="text-end">{{ $person['sales_count'] }}</td>
-                            <td class="text-end text-success fw-600">${{ number_format($person['total_sales'], 2) }}</td>
-                            <td class="text-end">${{ number_format($person['average_sale'], 2) }}</td>
+                            <td class="text-end text-success fw-600">TZS {{ number_format($person['total_sales'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($person['average_sale'], 2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

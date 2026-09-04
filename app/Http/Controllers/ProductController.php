@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -112,6 +113,19 @@ class ProductController extends Controller
         $product->load(['category', 'supplier']);
 
         return view('products.show', compact('product'));
+    }
+
+    /**
+     * Display a product image from the public disk.
+     */
+    public function image(Product $product)
+    {
+        abort_unless($product->product_image_path, 404);
+
+        $disk = Storage::disk('public');
+        abort_unless($disk->exists($product->product_image_path), 404);
+
+        return response()->file($disk->path($product->product_image_path));
     }
 
     /**

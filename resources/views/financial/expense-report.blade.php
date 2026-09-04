@@ -34,7 +34,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Total Expenses</small>
-                <h4 class="mb-0 text-danger">${{ number_format($expenses['total_expenses'], 2) }}</h4>
+                <h4 class="mb-0 text-danger">TZS {{ number_format($expenses['total_expenses'], 2) }}</h4>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
         <div class="card">
             <div class="card-body">
                 <small class="text-muted d-block">Average Expense</small>
-                <h4 class="mb-0">${{ number_format($expenses['count'] > 0 ? $expenses['total_expenses'] / $expenses['count'] : 0, 2) }}</h4>
+                <h4 class="mb-0">TZS {{ number_format($expenses['count'] > 0 ? $expenses['total_expenses'] / $expenses['count'] : 0, 2) }}</h4>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
                                 <tr>
                                     <td>{{ $expense['category'] }}</td>
                                     <td class="text-end">{{ number_format($expense['count']) }}</td>
-                                    <td class="text-end">${{ number_format($expense['total'], 2) }}</td>
+                                    <td class="text-end">TZS {{ number_format($expense['total'], 2) }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -111,7 +111,7 @@
                                 <tr>
                                     <td>{{ ucfirst($expense['method']) }}</td>
                                     <td class="text-end">{{ number_format($expense['count']) }}</td>
-                                    <td class="text-end">${{ number_format($expense['total'], 2) }}</td>
+                                    <td class="text-end">TZS {{ number_format($expense['total'], 2) }}</td>
                                 </tr>
                             @empty
                                 <tr>

@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-6">
                         <small class="text-muted d-block">Amount</small>
-                        <h5 class="mb-0 text-primary">${{ number_format($expense->amount, 2) }}</h5>
+                        <h5 class="mb-0 text-primary">TZS {{ number_format($expense->amount, 2) }}</h5>
                     </div>
                     <div class="col-md-6">
                         <small class="text-muted d-block">Payment Method</small>

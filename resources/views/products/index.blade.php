@@ -82,7 +82,7 @@
                                     <div class="d-flex align-items-center">
                                         @if($product->product_image_path)
                                             <img 
-                                                src="{{ asset('storage/' . $product->product_image_path) }}" 
+                                                src="{{ route('products.image', $product) }}"
                                                 alt="{{ $product->name }}"
                                                 width="40"
                                                 height="40"
@@ -110,8 +110,8 @@
                                 </td>
                                 <td>{{ $product->category->name }}</td>
                                 <td>
-                                    <small class="d-block">Cost: ${{ number_format($product->purchase_price, 2) }}</small>
-                                    <strong>${{ number_format($product->selling_price, 2) }}</strong>
+                                    <small class="d-block">Cost: TZS {{ number_format($product->purchase_price, 2) }}</small>
+                                    <strong>TZS {{ number_format($product->selling_price, 2) }}</strong>
                                 </td>
                                 <td>
                                     <span class="badge {{ 

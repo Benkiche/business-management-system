@@ -29,19 +29,19 @@
                     <tbody>
                         <tr>
                             <td>Inventory</td>
-                            <td class="text-end">${{ number_format($balanceSheet['assets']['inventory'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($balanceSheet['assets']['inventory'], 2) }}</td>
                         </tr>
                         <tr>
                             <td>Customer Receivables</td>
-                            <td class="text-end">${{ number_format($balanceSheet['assets']['customer_receivables'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($balanceSheet['assets']['customer_receivables'], 2) }}</td>
                         </tr>
                         <tr>
                             <td>Cash</td>
-                            <td class="text-end">${{ number_format($balanceSheet['assets']['cash'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($balanceSheet['assets']['cash'], 2) }}</td>
                         </tr>
                         <tr class="border-top fw-bold">
                             <td>Total Assets</td>
-                            <td class="text-end text-success">${{ number_format($balanceSheet['assets']['total'], 2) }}</td>
+                            <td class="text-end text-success">TZS {{ number_format($balanceSheet['assets']['total'], 2) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,19 +59,19 @@
                     <tbody>
                         <tr>
                             <td>Supplier Payables</td>
-                            <td class="text-end">${{ number_format($balanceSheet['liabilities']['supplier_payables'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($balanceSheet['liabilities']['supplier_payables'], 2) }}</td>
                         </tr>
                         <tr class="border-top fw-bold">
                             <td>Total Liabilities</td>
-                            <td class="text-end text-danger">${{ number_format($balanceSheet['liabilities']['total'], 2) }}</td>
+                            <td class="text-end text-danger">TZS {{ number_format($balanceSheet['liabilities']['total'], 2) }}</td>
                         </tr>
                         <tr>
                             <td>Retained Equity</td>
-                            <td class="text-end">${{ number_format($balanceSheet['equity'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($balanceSheet['equity'], 2) }}</td>
                         </tr>
                         <tr class="border-top fw-bold">
                             <td>Total Liabilities and Equity</td>
-                            <td class="text-end">${{ number_format($balanceSheet['liabilities']['total'] + $balanceSheet['equity'], 2) }}</td>
+                            <td class="text-end">TZS {{ number_format($balanceSheet['liabilities']['total'] + $balanceSheet['equity'], 2) }}</td>
                         </tr>
                     </tbody>
                 </table>

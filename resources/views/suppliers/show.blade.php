@@ -101,7 +101,7 @@
                                         <br><small class="text-muted">{{ $item->product->product_code }}</small>
                                     </td>
                                     <td class="text-end">{{ $item->quantity }}</td>
-                                    <td class="text-end">${{ number_format($item->unit_price, 2) }}</td>
+                                    <td class="text-end">TZS {{ number_format($item->unit_price, 2) }}</td>
                                     <td class="text-end">
                                         @if($item->discount_percent > 0)
                                             {{ $item->discount_percent }}%
@@ -109,7 +109,7 @@
                                             -
                                         @endif
                                     </td>
-                                    <td class="text-end">${{ number_format($item->line_total, 2) }}</td>
+                                    <td class="text-end">TZS {{ number_format($item->line_total, 2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -123,23 +123,23 @@
                             <tbody>
                                 <tr>
                                     <td>Subtotal</td>
-                                    <td class="text-end fw-bold">${{ number_format($sale->subtotal, 2) }}</td>
+                                    <td class="text-end fw-bold">TZS {{ number_format($sale->subtotal, 2) }}</td>
                                 </tr>
                                 @if($sale->discount_amount > 0)
                                     <tr class="text-danger">
                                         <td>Discount</td>
-                                        <td class="text-end">-${{ number_format($sale->discount_amount, 2) }}</td>
+                                        <td class="text-end">-TZS {{ number_format($sale->discount_amount, 2) }}</td>
                                     </tr>
                                 @endif
                                 @if($sale->tax_amount > 0)
                                     <tr>
                                         <td>Tax</td>
-                                        <td class="text-end">+${{ number_format($sale->tax_amount, 2) }}</td>
+                                        <td class="text-end">+TZS {{ number_format($sale->tax_amount, 2) }}</td>
                                     </tr>
                                 @endif
                                 <tr class="border-top">
                                     <td class="fw-bold">TOTAL</td>
-                                    <td class="text-end fw-bold">${{ number_format($sale->grand_total, 2) }}</td>
+                                    <td class="text-end fw-bold">TZS {{ number_format($sale->grand_total, 2) }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -182,16 +182,16 @@
             <div class="card-body">
                 <div class="mb-3">
                     <small class="text-muted d-block">Amount Due</small>
-                    <h5 class="mb-0">${{ number_format($sale->grand_total, 2) }}</h5>
+                    <h5 class="mb-0">TZS {{ number_format($sale->grand_total, 2) }}</h5>
                 </div>
                 <div class="mb-3">
                     <small class="text-muted d-block">Amount Paid</small>
-                    <h5 class="mb-0">${{ number_format($sale->amount_paid, 2) }}</h5>
+                    <h5 class="mb-0">TZS {{ number_format($sale->amount_paid, 2) }}</h5>
                 </div>
                 <div class="bg-light p-3 rounded">
                     <small class="text-muted d-block">Outstanding</small>
                     <h4 class="mb-0">
-                        ${{ number_format($sale->outstanding_balance, 2) }}
+                        TZS {{ number_format($sale->outstanding_balance, 2) }}
                         <span class="badge {{ $sale->isPaid() ? 'bg-success' : 'bg-warning' }} ms-2">
                             {{ $sale->isPaid() ? 'PAID' : 'DUE' }}
                         </span>
@@ -213,7 +213,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <small class="text-muted">{{ $payment->payment_date->format('M d, Y') }}</small>
-                                        <div class="fw-bold">${{ number_format($payment->amount, 2) }}</div>
+                                        <div class="fw-bold">TZS {{ number_format($payment->amount, 2) }}</div>
                                     </div>
                                     <small class="text-muted">{{ ucfirst($payment->payment_method) }}</small>
                                 </div>

@@ -40,15 +40,15 @@
             <tbody>
                 <tr>
                     <td class="fw-bold">Revenue</td>
-                    <td class="text-end fw-bold">${{ number_format($pnl['revenue'], 2) }}</td>
+                    <td class="text-end fw-bold">TZS {{ number_format($pnl['revenue'], 2) }}</td>
                 </tr>
                 <tr>
                     <td>Less: Cost of Goods Sold</td>
-                    <td class="text-end">${{ number_format($pnl['cost_of_goods_sold'], 2) }}</td>
+                    <td class="text-end">TZS {{ number_format($pnl['cost_of_goods_sold'], 2) }}</td>
                 </tr>
                 <tr class="border-bottom fw-bold">
                     <td>GROSS PROFIT</td>
-                    <td class="text-end text-success">${{ number_format($pnl['gross_profit'], 2) }} ({{ number_format($pnl['gross_margin'], 1) }}%)</td>
+                    <td class="text-end text-success">TZS {{ number_format($pnl['gross_profit'], 2) }} ({{ number_format($pnl['gross_margin'], 1) }}%)</td>
                 </tr>
 
                 <tr class="table-light">
@@ -59,19 +59,19 @@
                 @foreach($pnl['expenses_breakdown'] as $expense)
                     <tr>
                         <td style="padding-left: 40px;">{{ $expense['category'] }}</td>
-                        <td class="text-end">${{ number_format($expense['total'], 2) }}</td>
+                        <td class="text-end">TZS {{ number_format($expense['total'], 2) }}</td>
                     </tr>
                 @endforeach
 
                 <tr class="border-bottom">
                     <td style="padding-left: 40px;" class="fw-bold">Total Operating Expenses</td>
-                    <td class="text-end fw-bold">${{ number_format($pnl['operating_expenses'], 2) }}</td>
+                    <td class="text-end fw-bold">TZS {{ number_format($pnl['operating_expenses'], 2) }}</td>
                 </tr>
 
                 <tr class="fw-bold text-lg border-top border-bottom">
                     <td>NET PROFIT / LOSS</td>
                     <td class="text-end {{ $pnl['net_profit'] >= 0 ? 'text-success' : 'text-danger' }}">
-                        ${{ number_format($pnl['net_profit'], 2) }} ({{ number_format($pnl['net_margin'], 1) }}%)
+                        TZS {{ number_format($pnl['net_profit'], 2) }} ({{ number_format($pnl['net_margin'], 1) }}%)
                     </td>
                 </tr>
 
@@ -81,11 +81,11 @@
                 </tr>
                 <tr>
                     <td>Discounts Given</td>
-                    <td class="text-end">${{ number_format($pnl['total_discount_given'], 2) }}</td>
+                    <td class="text-end">TZS {{ number_format($pnl['total_discount_given'], 2) }}</td>
                 </tr>
                 <tr>
                     <td>Tax Collected</td>
-                    <td class="text-end">${{ number_format($pnl['total_tax_collected'], 2) }}</td>
+                    <td class="text-end">TZS {{ number_format($pnl['total_tax_collected'], 2) }}</td>
                 </tr>
             </tbody>
         </table>

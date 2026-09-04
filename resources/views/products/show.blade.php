@@ -12,7 +12,7 @@
                     <div class="col-md-4 text-center mb-4">
                         @if($product->product_image_path)
                             <img 
-                                src="{{ asset('storage/' . $product->product_image_path) }}" 
+                                src="{{ route('products.image', $product) }}"
                                 alt="{{ $product->name }}"
                                 class="img-fluid rounded"
                                 style="max-height: 300px;"
@@ -88,11 +88,11 @@
             <div class="card-body">
                 <div class="mb-3">
                     <small class="text-muted d-block">Purchase Price</small>
-                    <h5 class="mb-0">${{ number_format($product->purchase_price, 2) }}</h5>
+                    <h5 class="mb-0">TZS {{ number_format($product->purchase_price, 2) }}</h5>
                 </div>
                 <div class="mb-3">
                     <small class="text-muted d-block">Selling Price</small>
-                    <h5 class="mb-0">${{ number_format($product->selling_price, 2) }}</h5>
+                    <h5 class="mb-0">TZS {{ number_format($product->selling_price, 2) }}</h5>
                 </div>
                 <div class="bg-light p-3 rounded">
                     <small class="text-muted d-block">Profit Margin</small>
