@@ -138,15 +138,28 @@ class AnalyticsService
         $data = [];
         $currentDate = \Carbon\Carbon::parse($fromDate);
         $endDate = \Carbon\Carbon::parse($toDate);
+        $salesByDate = collect();
+        $expensesByDate = collect();
+
+        if ($this->hasSalesTable()) {
+            $salesByDate = Sale::query()
+                ->where('status', 'completed')
+                ->whereBetween('sale_date', [$fromDate, $toDate])
+                ->get(['sale_date', 'grand_total'])
+                ->groupBy(fn ($sale) => $sale->sale_date->toDateString())
+                ->map(fn ($sales) => $sales->sum('grand_total'));
+        }
+
+        $expensesByDate = Expense::approved()
+            ->whereBetween('expense_date', [$fromDate, $toDate])
+            ->get(['expense_date', 'amount'])
+            ->groupBy(fn ($expense) => $expense->expense_date->toDateString())
+            ->map(fn ($expenses) => $expenses->sum('amount'));
 
         while ($currentDate <= $endDate) {
             $dateStr = $currentDate->toDateString();
-
-            $revenue = $this->salesTotalForDate($dateStr);
-
-            $expenses = Expense::approved()
-                ->whereDate('expense_date', $dateStr)
-                ->sum('amount');
+            $revenue = (float) ($salesByDate->get($dateStr, 0));
+            $expenses = (float) ($expensesByDate->get($dateStr, 0));
 
             $data[] = [
                 'date' => $currentDate->format('M d'),
@@ -331,14 +344,35 @@ class AnalyticsService
     public function getMonthlyComparison(): array
     {
         $months = [];
+        $start = now()->subMonths(11)->startOfMonth()->toDateString();
+        $end = now()->endOfMonth()->toDateString();
+        $salesByMonth = collect();
+        $expensesByMonth = collect();
+
+        if ($this->hasSalesTable()) {
+            $salesByMonth = Sale::query()
+                ->where('status', 'completed')
+                ->whereBetween('sale_date', [$start, $end])
+                ->get(['sale_date', 'grand_total'])
+                ->groupBy(fn ($sale) => $sale->sale_date->format('Y-m'))
+                ->map(fn ($sales) => $sales->sum('grand_total'));
+        }
+
+        $expensesByMonth = Expense::approved()
+            ->whereBetween('expense_date', [$start, $end])
+            ->get(['expense_date', 'amount'])
+            ->groupBy(fn ($expense) => $expense->expense_date->format('Y-m'))
+            ->map(fn ($expenses) => $expenses->sum('amount'));
+
         for ($i = 11; $i >= 0; $i--) {
             $date = now()->subMonths($i);
             $from = $date->startOfMonth()->toDateString();
             $to = $date->endOfMonth()->toDateString();
             $monthName = $date->format('M');
+            $monthKey = $date->format('Y-m');
 
-            $sales = $this->salesTotalInRange($from, $to);
-            $expenses = Expense::approved()->dateRange($from, $to)->sum('amount');
+            $sales = (float) ($salesByMonth->get($monthKey, 0));
+            $expenses = (float) ($expensesByMonth->get($monthKey, 0));
 
             $months[] = [
                 'month' => $monthName,
